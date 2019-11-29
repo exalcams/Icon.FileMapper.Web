@@ -1,5 +1,5 @@
 <div class="sidenav-header">
-    <mat-toolbar>
+    <mat-toolbar>        
         <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
             <div class="search-wrapper" fxFlex fxLayout="row" fxLayoutAlign="start center">
                 <div class="search" fxFlex fxLayout="row" fxLayoutAlign="start center">
@@ -15,6 +15,7 @@
         </mat-toolbar-row>
     </mat-toolbar>
 </div>
+
 <div class="sidenav-content py-16" fusePerfectScrollbar fxFlex>
     <div *ngFor="let fileMapper of AllFileMappers | filter: searchText">
         <div [attr.aria-label]="fileMapper.Mode">
