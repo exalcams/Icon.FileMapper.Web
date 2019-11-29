@@ -1,0 +1,186 @@
+<form class="mat-card mat-elevation-z4 p-24" autocomplete="off" fxLayout="column" fxLayoutAlign="start"
+  fxFlex="1 0 auto" name="form" [formGroup]="fileMapperMainFormGroup" novalidate>
+
+  <div class="h2 mb-24">{{fileMapper.FileMapperID?'Update':'Create'}} File Mapper</div>
+
+  <div fxLayout="row" fxLayoutAlign="start">
+
+    <mat-form-field class="pl-8" fxFlex="50">
+      <mat-select placeholder="Mode" formControlName="Mode">
+        <mat-option *ngFor="let mode of AllModes" [value]="mode">{{mode}}</mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="fileMapperMainFormGroup.get('Mode').touched && fileMapperMainFormGroup.get('Mode').hasError('required')">
+        Mode required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="pl-8" fxFlex="50">
+      <input matInput placeholder="Mail Box" formControlName="MailBox">
+      <mat-error
+        *ngIf="fileMapperMainFormGroup.get('MailBox').touched &&  fileMapperMainFormGroup.get('MailBox').hasError('required')">
+        Mail Box required</mat-error>
+    </mat-form-field>
+
+    <!-- <mat-form-field class="pl-8" fxFlex="50">
+      <input matInput placeholder="Email ID" formControlName="email">
+      <mat-error *ngIf="fileMapperMainFormGroup.get('email').touched && fileMapperMainFormGroup.get('email').hasError('required')">
+        Email is required
+      </mat-error>
+      <mat-error *ngIf="fileMapperMainFormGroup.get('email').touched && !fileMapperMainFormGroup.get('email').hasError('required') &&
+                fileMapperMainFormGroup.get('email').hasError('email')">
+        Please enter a valid email address
+      </mat-error>
+    </mat-form-field> -->
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="start">
+
+    <mat-form-field class="pl-8" fxFlex="50">
+      <mat-select placeholder="Connectivity" formControlName="Connectivity">
+        <mat-option *ngFor="let connectivity of AllConnectivities" (click)="onConnectivityClick(connectivity)"  [value]="connectivity" >{{connectivity}}</mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="fileMapperMainFormGroup.get('Connectivity').touched && fileMapperMainFormGroup.get('Connectivity').hasError('required')">
+        Connectivity required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="pl-8" fxFlex="50">
+      <input matInput placeholder="Subject" formControlName="Subject">
+      <mat-error
+        *ngIf="fileMapperMainFormGroup.get('Subject').touched &&  fileMapperMainFormGroup.get('Subject').hasError('required')">
+        Subject required</mat-error>
+    </mat-form-field>
+
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="start" *ngIf="IsConnectivity">
+
+  
+    <mat-form-field class="pl-8" fxFlex="50">
+      <input matInput placeholder="Host" formControlName="Host">
+      <mat-error
+        *ngIf="fileMapperMainFormGroup.get('Host').touched &&  fileMapperMainFormGroup.get('Host').hasError('required')">
+        Host required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="pl-8" fxFlex="50">
+      <input matInput placeholder="Port" formControlName="Port">
+      <mat-error
+        *ngIf="fileMapperMainFormGroup.get('Port').touched &&  fileMapperMainFormGroup.get('Port').hasError('required')">
+        Port required</mat-error>
+    </mat-form-field>
+
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="start" *ngIf="IsConnectivity">
+
+    <mat-form-field class="pl-8" fxFlex="50">
+      <input matInput placeholder="Email" formControlName="Email">
+      <mat-error
+        *ngIf="fileMapperMainFormGroup.get('Email').touched &&  fileMapperMainFormGroup.get('Email').hasError('required')">
+        Email required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="pl-8" fxFlex="50">
+      <input matInput placeholder="Password" formControlName="Password">
+      <mat-error
+        *ngIf="fileMapperMainFormGroup.get('Password').touched &&  fileMapperMainFormGroup.get('Password').hasError('required')">
+        Password required</mat-error>
+    </mat-form-field>
+
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="start">
+
+    <mat-form-field class="pl-8" fxFlex="50">
+      <input matInput placeholder="From" formControlName="From">
+      <mat-error
+        *ngIf="fileMapperMainFormGroup.get('From').touched &&  fileMapperMainFormGroup.get('From').hasError('required')">
+        From required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="pl-8" fxFlex="50">
+      <input matInput placeholder="Attachment Type" formControlName="AttachmentType">
+      <mat-error
+        *ngIf="fileMapperMainFormGroup.get('AttachmentType').touched &&  fileMapperMainFormGroup.get('AttachmentType').hasError('required')">
+        Attachment Type required</mat-error>
+    </mat-form-field>
+
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="start">
+
+    <mat-form-field class="pl-8" fxFlex="50">
+      <input matInput placeholder="TrainingContext" formControlName="TrainingContext">
+      <mat-error
+        *ngIf="fileMapperMainFormGroup.get('TrainingContext').touched &&  fileMapperMainFormGroup.get('TrainingContext').hasError('required')">
+        Training Context required</mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="pl-8" fxFlex="50">
+      <input matInput placeholder="Interval Check" formControlName="IntervalCheck">
+      <mat-error
+        *ngIf="fileMapperMainFormGroup.get('IntervalCheck').touched &&  fileMapperMainFormGroup.get('IntervalCheck').hasError('required')">
+        Interval Check required</mat-error>
+    </mat-form-field>
+
+  </div>
+
+
+  <!-- <div fxLayout="row" fxLayoutAlign="start">
+
+    <mat-form-field class="pl-8" fxFlex="50">
+      <input matInput placeholder="Mobile Number" pattern="^(\+91[\-\s]?)?[0]?(91)?[6789]\d{9}$"
+        formControlName="contactNumber">
+      <mat-error
+        *ngIf="fileMapperMainFormGroup.get('contactNumber').touched && fileMapperMainFormGroup.get('contactNumber').hasError('required')">
+        Mobile Number is required
+      </mat-error>
+      <mat-error *ngIf="fileMapperMainFormGroup.get('contactNumber').touched && !fileMapperMainFormGroup.get('contactNumber').hasError('required') &&
+                fileMapperMainFormGroup.get('contactNumber').hasError('pattern')">
+        Please enter a valid Mobile Number
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="pl-8" fxFlex="50">
+      <mat-select placeholder="Role Name" formControlName="roleID">
+        <mat-option *ngFor="let rol of AllRoles" [value]="rol.RoleID">{{rol.RoleName}}</mat-option>
+      </mat-select>
+      <mat-error
+        *ngIf="fileMapperMainFormGroup.get('roleID').touched && fileMapperMainFormGroup.get('roleID').hasError('required')">Role
+        Name required</mat-error>
+    </mat-form-field>
+
+  </div> -->
+  <!-- 
+  <div fxLayout="row" fxLayoutAlign="start" fxFlex="1 0 auto">
+
+    <div class="pl-8" fxFlex="50">
+        <button type="button" mat-button color="accent" (click)="imgFileInput.click()">Choose Profile
+            <mat-icon>image</mat-icon>
+        </button>
+        <span class="selectProfileClass">{{fileToUpload?.name}}</span>
+        <input hidden type="file" #imgFileInput id="file" accept=".jpg,.jpeg,.png" (change)="handleFileInput($event)"/>
+      <input type="file" id="file" accept=".jpg,.jpeg,.png" (change)="handleFileInput($event)">
+    </div>
+
+    <div class="pl-8" fxFlex="50">
+      <input type="file" id="file" ng2FileSelect [uploader]="fileUploader" (change)="handleFileInput($event)">
+    </div>
+
+  </div> -->
+
+  <div fxLayout="row" fxLayoutAlign="end">
+    <button mat-raised-button type="button" (click)="ResetControl()" *ngIf="!fileMapper.FileMapperID"
+      style="margin-right:10px">
+      Clear
+    </button>
+    <button mat-raised-button color="warn" type="button" (click)="DeleteClicked()" *ngIf="fileMapper.FileMapperID"
+      style="margin-right:10px">
+      Delete
+    </button>
+    <button mat-raised-button color="accent" type="button" (click)="SaveClicked()">
+      {{fileMapper.FileMapperID?'Update':'Create'}}
+    </button>
+  </div>
+</form>

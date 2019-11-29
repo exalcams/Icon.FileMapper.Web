@@ -1,0 +1,21 @@
+<div id="chat" class="page-layout carded fullwidth inner-scroll">
+    <div class="top-bg accent"></div>
+    <div class="center">
+        <div class="content-card">
+            <mat-sidenav-container>
+                <mat-sidenav class="sidenav" position="start" opened="true" mode="side"
+                    fuseMatSidenavHelper="chat-left-sidenav" matIsLockedOpen="gt-md">
+                    <file-mapper-side-bar [AllFileMappers]="AllFileMappers"
+                        (FileMapperSelectionChanged)="OnFileMapperSelectionChanged($event)">
+                    </file-mapper-side-bar>
+                </mat-sidenav>
+                <file-mapper-main-content [currentSelectedFileMapper]="SelectedFileMapper"
+                    (SaveSucceed)='RefreshAllFileMappers($event)'
+                    (ShowProgressBarEvent)="OnShowProgressBarEvent($event)">
+                </file-mapper-main-content>
+            </mat-sidenav-container>
+            <mat-progress-spinner *ngIf="IsProgressBarVisibile" class="ProgressBarPostion" color="accent"
+                mode="indeterminate"></mat-progress-spinner>
+        </div>
+    </div>
+</div>
