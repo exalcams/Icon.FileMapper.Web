@@ -4,7 +4,7 @@ import { Observable, throwError, Subject } from 'rxjs';
 import { _MatChipListMixinBase } from '@angular/material';
 import { AuthService } from './auth.service';
 import { catchError } from 'rxjs/operators';
-import { FileMapper } from 'app/models/file-mapper';
+import { FileMapper, PatternMatching } from 'app/models/file-mapper';
 
 @Injectable({
   providedIn: 'root'
@@ -48,6 +48,11 @@ export class FileMapperService {
 
   GetAllFileMappers(): Observable<FileMapper[] | string> {
     return this._httpClient.get<FileMapper[]>(`${this.baseAddress}api/FileMapper/GetAllFileMappers`)
+      .pipe(catchError(this.errorHandler));
+  }
+
+  GetAllPatterns(): Observable<string[] | string> {
+    return this._httpClient.get<string[]>(`${this.baseAddress}api/FileMapper/GetAllPatterns`)
       .pipe(catchError(this.errorHandler));
   }
 

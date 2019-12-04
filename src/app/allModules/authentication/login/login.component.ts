@@ -214,6 +214,18 @@ export class LoginComponent implements OnInit {
         }
       );
     }
+    if (this.MenuItems.indexOf('BotSchedule') >= 0) {
+      this.children.push(
+        {
+          id: 'botSchedule',
+          title: 'Bot Schedule',
+          translate: 'NAV.SAMPLE.TITLE',
+          type: 'item',
+          icon: 'dashboard',
+          url: '/pages/bot-schedule',
+        }
+      );
+    }
     if (this.MenuItems.indexOf('App') >= 0) {
       this.subChildren.push(
         {

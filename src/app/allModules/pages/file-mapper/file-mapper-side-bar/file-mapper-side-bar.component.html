@@ -21,12 +21,12 @@
         <div [attr.aria-label]="fileMapper.Mode">
             <div fxLayout="row" fxLayoutAlign="start center" class="side-bar-items" matRipple
                 (click)="loadSelectedFileMapper(fileMapper)"
-                [ngClass]="{'active accent':selectID==fileMapper.FileMapperID}">
+                [ngClass]="{'active accent':selectID==fileMapper.MapperID}">
                 <div fxFlex="30%" fxLayoutAlign="start center">
                     {{fileMapper.Mode}}
                 </div>
                 <div fxFlex="70%" fxLayoutAlign="start center">
-                    {{fileMapper.MailBox}}
+                    {{fileMapper.Email}}
                 </div>
             </div>
         </div>
@@ -39,7 +39,7 @@
           <button mat-button class="contact" *ngFor="let fileMapper of AllFileMappers | filter: searchText"
               (click)="loadSelectedFileMapper(fileMapper)" ngClass="{'unread':contact.unread}"
               [@animate]="{value:'*',params:{y:'100%'}}"
-              [style.background-color]="selectID==fileMapper.FileMapperID?'lightgrey':'white'">
+              [style.background-color]="selectID==fileMapper.MapperID?'lightgrey':'white'">
               <div fxLayout="row" fxLayoutAlign="start center">
                   <div fxLayout="row" fxFlex>
                       <div class="" fxFlex fxLayout="column" fxLayoutAlign="center start">

@@ -29,13 +29,13 @@ export class FileMapperSideBarComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (this.AllFileMappers.length > 0) {
-      this.selectID = this.AllFileMappers[0].FileMapperID;
+      this.selectID = this.AllFileMappers[0].MapperID;
       this.loadSelectedFileMapper(this.AllFileMappers[0]);
     }
   }
 
   loadSelectedFileMapper(SelectedFileMapper: FileMapper): void {
-    this.selectID = SelectedFileMapper.FileMapperID;
+    this.selectID = SelectedFileMapper.MapperID;
     this.FileMapperSelectionChanged.emit(SelectedFileMapper);
   }
 

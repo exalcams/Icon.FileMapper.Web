@@ -48,13 +48,13 @@ export class FileMapperComponent implements OnInit {
   }
 
   GetAllFileMappers(): void {
-    var fileMapper1 = new FileMapper();
-    var guid = Guid.create();
-    fileMapper1.FileMapperID = guid;
-    fileMapper1.MailBox = 'ABC';
-    fileMapper1.Mode = 'Email';
-    fileMapper1.Connectivity = 'IMAP';
-    this.AllFileMappers.push(fileMapper1);
+    // var fileMapper1 = new FileMapper();
+    // var guid = Guid.create();
+    // fileMapper1.MapperID = guid;
+    // fileMapper1.MailBox = 'ABC';
+    // fileMapper1.Mode = 'Email';
+    // fileMapper1.ConnectionServer = 'IMAP';
+   // this.AllFileMappers.push(fileMapper1);
     this._fileMapperService.GetAllFileMappers().subscribe(
       (data) => {
         this.AllFileMappers = <FileMapper[]>data;
