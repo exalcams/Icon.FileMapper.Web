@@ -142,7 +142,7 @@
     <mat-form-field class="pl-8" fxFlex="50">
       <mat-label>AttachmentType</mat-label>
       <mat-select formControlName="AttachmentType" multiple>
-        <mat-option *ngFor="let attachmentType of AttachmentTypeList" [value]="attachmentType.name">{{attachmentType.name}}
+        <mat-option *ngFor="let attachmentType of AttachmentTypeList" [value]="attachmentType">{{attachmentType}}
         </mat-option>
       </mat-select>
       <mat-error

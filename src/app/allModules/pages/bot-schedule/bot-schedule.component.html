@@ -13,7 +13,7 @@
             </div>
           </div>
           <mat-divider style="margin-top: 10px;border: 1px solid rgba(0, 0, 0, 0.30)"></mat-divider>
-          <div class="sidenav-content" fusePerfectScrollbar fxFlex style="margin-top: 10px">
+          <div class="sidenav-content" fusePerfectScrollbar fxFlex style="margin-top: 10px;margin-left: -4px">
             <div *ngFor="let mapers of AllFileMappers | filter: searchText" (click)="fileMapperClick(mapers)"
               class="borderRightSide side-bar-items" [ngClass]="{'active accent':mapers.MapperID===SelectedMapperID}">
               <div style="margin-top: 5px;">
@@ -119,10 +119,10 @@
                 </div>
               </div>
             </div> -->
-            <div fxLayout fxLayoutAlign="center" class="m-4"
+            <!-- <div fxLayout fxLayoutAlign="center" class="m-4"
               *ngFor="let status of StatusList;let i=index;let last = last">
               <div fxFlex="8" fxLayout="column" fxLayoutAlign="start center" style="margin-left: 35px">
-                <!-- *ngIf="currentSelectedFileMapper.Status == 'Created'" -->
+                *ngIf="currentSelectedFileMapper.Status == 'Created'"
                   <div  class="round1" [style.background-color]="last?'#2ecc71':'white'"></div>
                   <div fxFlex class="vertical-line"></div>
               </div>
@@ -134,7 +134,54 @@
                   </div>
                 </div>
               </div>
+            </div> -->
+            <div fxLayout fxLayoutAlign="center" class="m-4">
+            <div fxFlex="8" fxLayout="column" fxLayoutAlign="start center" style="margin-left: 35px">
+              <!-- *ngIf="currentSelectedFileMapper.Status == 'Created'" -->
+                <div *ngIf="currentSelectedFileMapper.Status == 'Created'"  class="round1"></div>
+                <div *ngIf="currentSelectedFileMapper.Status !== 'Created'"  class="round"></div>
+                <div fxFlex class="vertical-line"></div>
             </div>
+            <div fxFlex fxLayout class="mb-8">
+              <div fxFlex fxLayoutAlign="center"></div>
+              <div fxFlex="95" fxLayout fxLayoutAlign="center">
+                <div fxFlex="70">
+                  <span>Created</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div fxLayout fxLayoutAlign="center" class="m-4">
+            <div fxFlex="8" fxLayout="column" fxLayoutAlign="start center" style="margin-left: 35px">
+              <!-- *ngIf="currentSelectedFileMapper.Status == 'Created'" -->
+                <div *ngIf="currentSelectedFileMapper.Status == 'TestRun'"  class="round1" ></div>
+                <div *ngIf="currentSelectedFileMapper.Status !== 'TestRun'"  class="round" ></div>
+                <div fxFlex class="vertical-line"></div>
+            </div>
+            <div fxFlex fxLayout class="mb-8">
+              <div fxFlex fxLayoutAlign="center"></div>
+              <div fxFlex="95" fxLayout fxLayoutAlign="center">
+                <div fxFlex="70">
+                  <span>TestRun</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div fxLayout fxLayoutAlign="center" class="m-4">
+            <div fxFlex="8" fxLayout="column" fxLayoutAlign="start center" style="margin-left: 35px">
+              <!-- *ngIf="currentSelectedFileMapper.Status == 'Created'" -->
+                <div *ngIf="currentSelectedFileMapper.Status == 'Processed'"  class="round1"></div>
+                <div *ngIf="currentSelectedFileMapper.Status !== 'Processed'"  class="round" ></div>
+            </div>
+            <div fxFlex fxLayout class="mb-8">
+              <div fxFlex fxLayoutAlign="center"></div>
+              <div fxFlex="95" fxLayout fxLayoutAlign="center">
+                <div fxFlex="70">
+                  <span>Processed</span>
+                </div>
+              </div>
+            </div>
+          </div>
             <!-- <div fxLayout fxLayoutAlign="center" class="m-4">
               <div fxFlex="8" fxLayoutAlign="start start">
                 <div class="ml-4">
