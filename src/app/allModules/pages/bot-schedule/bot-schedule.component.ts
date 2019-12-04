@@ -92,7 +92,7 @@ export class BotScheduleComponent implements OnInit {
     // console.log(selectedMapper);
     this.SelectedMapperID = selectedMapper.MapperID;
     this.currentSelectedFileMapper = selectedMapper;
-    console.log(this.currentSelectedFileMapper);
+    //console.log(this.currentSelectedFileMapper);
    this.fileMapperMainFormGroup.get('MapperID').patchValue(selectedMapper.MapperID);
    this.fileMapperMainFormGroup.get('Mode').patchValue(selectedMapper.Mode);
    this.fileMapperMainFormGroup.get('Connectivity').patchValue(selectedMapper.ConnectionServer);

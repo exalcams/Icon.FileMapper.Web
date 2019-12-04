@@ -40,7 +40,8 @@ export class FileMapperMainContentComponent implements OnInit, OnChanges {
   authenticationDetails: AuthenticationDetails;
   GetAllPatterns: string[] = [];
   AttachmentTypes = new FormControl();
-  AttachmentTypeList = [{ name: 'PDF' }, { name: 'JPG' }, { name: 'PNG' }];
+  // AttachmentTypeList = [{ name: 'PDF' }, { name: 'JPG' }, { name: 'PNG' }];
+  AttachmentTypeList: string[] = ['PDF', 'JPG', 'PNG'];
   // [{ name: 'PDF' }, { name: 'JPG' }, { name: 'PNG' }];
 
   IsProgressBarVisibile: boolean;
@@ -241,7 +242,7 @@ export class FileMapperMainContentComponent implements OnInit, OnChanges {
               this.fileMapper.Port = this.fileMapperMainFormGroup.get('Port').value;
               this.fileMapper.Email = this.fileMapperMainFormGroup.get('Email').value;
               this.fileMapper.Password = this.fileMapperMainFormGroup.get('Password').value;
-              this.fileMapper.AttachmentType = this.fileMapperMainFormGroup.get('AttachmentType').value;
+              // this.fileMapper.AttachmentType = this.fileMapperMainFormGroup.get('AttachmentType').value;
               this.fileMapper.ModifiedBy = this.authenticationDetails.userID.toString();
               this._fileMapperService.DeleteFileMapper(this.fileMapper).subscribe(
                 (data) => {
@@ -300,9 +301,10 @@ export class FileMapperMainContentComponent implements OnInit, OnChanges {
       this.fileMapperMainFormGroup.get('Port').patchValue(this.fileMapper.Port);
       this.fileMapperMainFormGroup.get('Email').patchValue(this.fileMapper.Email);
       this.fileMapperMainFormGroup.get('Password').patchValue(this.fileMapper.Password);
-      // this.fileMapperMainFormGroup.get('AttachmentType').patchValue(this.fileMapper.AttachmentType);
-      // this.AttachmentTypeList = this.fileMapperMainFormGroup.get('AttachmentType').value;
-      //  console.log(this.fileMapperMainFormGroup);
+      let attchment = this.fileMapper.AttachmentType.split(",");
+      // console.log(attchment);
+      this.fileMapperMainFormGroup.get('AttachmentType').patchValue(attchment);
+      //  console.log(this.fileMapper);
     } else {
       this.ResetControl();
     }

@@ -115,7 +115,8 @@
   }
   .round {
      @extend .roundCommon;
-    background-color: rgb(187, 185, 185); 
+    background-color: white; 
+    // rgb(187, 185, 185)
     border: 2px solid gray;
     cursor: pointer !important;
   }
@@ -139,6 +140,6 @@
 }
 .round1 {
   @extend .roundCommon;
-  background-color: rgb(187, 185, 185);
+  background-color: #2ecc71;
   border: 2px solid #2ecc71;
 }
