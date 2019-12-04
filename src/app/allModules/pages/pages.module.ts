@@ -54,6 +54,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { FileMapperComponent } from './file-mapper/file-mapper.component';
 import { FileMapperSideBarComponent } from './file-mapper/file-mapper-side-bar/file-mapper-side-bar.component';
 import { FileMapperMainContentComponent } from './file-mapper/file-mapper-main-content/file-mapper-main-content.component';
+import { BotScheduleComponent } from './bot-schedule/bot-schedule.component';
 
 const routes = [
     {
@@ -63,6 +64,10 @@ const routes = [
     {
         path: 'file-mapper',
         component: FileMapperComponent
+    },
+    {
+        path: 'bot-schedule',
+        component: BotScheduleComponent
     },
     {
         path: '**',
@@ -123,7 +128,7 @@ const routes = [
 
         FormsModule,
     ],
-    declarations: [DashboardComponent, FileMapperComponent, FileMapperSideBarComponent, FileMapperMainContentComponent],
+    declarations: [DashboardComponent, FileMapperComponent, FileMapperSideBarComponent, FileMapperMainContentComponent, BotScheduleComponent],
     providers: [],
     entryComponents: [
     ]
