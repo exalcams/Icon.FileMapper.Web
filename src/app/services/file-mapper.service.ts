@@ -4,7 +4,7 @@ import { Observable, throwError, Subject } from 'rxjs';
 import { _MatChipListMixinBase } from '@angular/material';
 import { AuthService } from './auth.service';
 import { catchError } from 'rxjs/operators';
-import { FileMapper, PatternMatching } from 'app/models/file-mapper';
+import { FileMapper, PatternMatching, BotScheduler, FileMaperWithSchedule } from 'app/models/file-mapper';
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +51,11 @@ export class FileMapperService {
       .pipe(catchError(this.errorHandler));
   }
 
+  GetAllFileMapperWithSchedule(): Observable<FileMaperWithSchedule | string> {
+    return this._httpClient.get<FileMaperWithSchedule>(`${this.baseAddress}api/FileMapper/GetAllFileMapperWithSchedule`)
+      .pipe(catchError(this.errorHandler));
+  }
+
   GetAllPatterns(): Observable<string[] | string> {
     return this._httpClient.get<string[]>(`${this.baseAddress}api/FileMapper/GetAllPatterns`)
       .pipe(catchError(this.errorHandler));
@@ -67,7 +72,28 @@ export class FileMapperService {
     ).pipe(catchError(this.errorHandler));
 
   }
+  TestRun(fileMapper: FileMapper): Observable<any> {
+    return this._httpClient.post<any>(`${this.baseAddress}api/FileMapper/TestRun`,
+    fileMapper,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        })
+      }
+    ).pipe(catchError(this.errorHandler));
 
+  }
+  ScheduleMapping(schedule: BotScheduler): Observable<any> {
+    return this._httpClient.post<any>(`${this.baseAddress}api/FileMapper/ScheduleMapping`,
+    schedule,
+      {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        })
+      }
+    ).pipe(catchError(this.errorHandler));
+
+  }
   DeleteFileMapper(fileMapper: FileMapper): Observable<any> {
     return this._httpClient.post<any>(`${this.baseAddress}api/FileMapper/DeleteFileMapper`,
       fileMapper,

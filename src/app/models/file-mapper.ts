@@ -34,3 +34,19 @@ export class PatternMatching {
     Field: string;
     IsActive: boolean;
 }
+export class BotScheduler {
+    SchedulerID: number;
+    MapperID: Guid;
+    PostCheckType: string;
+    DateCheck: Date;
+    DayCheck: string;
+    TimeCheck: string;
+    Interval: number;
+    IsActive: string;
+    ModifiedBy: string;
+    CreatedBy: string;
+}
+export class FileMaperWithSchedule {
+    fileMappers: FileMapper[];
+    botSchedulers: BotScheduler[];
+}
