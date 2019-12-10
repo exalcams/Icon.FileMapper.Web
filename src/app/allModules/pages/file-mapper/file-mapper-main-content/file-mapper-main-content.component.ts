@@ -57,7 +57,7 @@ export class FileMapperMainContentComponent implements OnInit, OnChanges {
       // MailBox: ['', Validators.required],
       Connectivity: ['', Validators.required],
       Subject: [''],
-      From: ['', [Validators.required]],
+      From: [''],
       AttachmentType: ['', Validators.required],
       TrainingContext: ['', Validators.required],
       // IntervalCheck: ['', Validators.required],

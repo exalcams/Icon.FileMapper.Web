@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+// import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { RouterModule } from '@angular/router';
 
 import {
@@ -41,6 +42,7 @@ import {
 } from '@angular/material';
 
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+
 import {
     FuseCountdownModule,
     FuseHighlightModule,
@@ -48,7 +50,7 @@ import {
     FuseWidgetModule
 } from '@fuse/components';
 
-import { FuseSharedModule } from '@fuse/shared.module';
+import { FuseSharedModule } from '@fuse/shared.module'; 
 import { FormsModule } from '@angular/forms';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { FileMapperComponent } from './file-mapper/file-mapper.component';
@@ -116,8 +118,9 @@ const routes = [
         MatToolbarModule,
         MatTooltipModule,
         MatTreeModule,
-
+ 
         NgxChartsModule,
+        // NgxMaterialTimepickerModule,
 
         FuseSharedModule,
 
