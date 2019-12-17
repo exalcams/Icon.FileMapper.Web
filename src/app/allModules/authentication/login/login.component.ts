@@ -209,7 +209,7 @@ export class LoginComponent implements OnInit {
           title: 'File Mapper',
           translate: 'NAV.SAMPLE.TITLE',
           type: 'item',
-          icon: 'dashboard',
+          icon: 'create_new_folder',
           url: '/pages/file-mapper',
         }
       );
@@ -221,7 +221,7 @@ export class LoginComponent implements OnInit {
           title: 'Bot Schedule',
           translate: 'NAV.SAMPLE.TITLE',
           type: 'item',
-          icon: 'dashboard',
+          icon: 'schedule',
           url: '/pages/bot-schedule',
         }
       );

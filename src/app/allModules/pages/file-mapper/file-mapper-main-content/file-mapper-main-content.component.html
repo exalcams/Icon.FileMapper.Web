@@ -15,14 +15,14 @@
     </mat-form-field>
 
     <mat-form-field class="pl-8" fxFlex="50">
-      <mat-select placeholder="TrainingContext" formControlName="TrainingContext">
+      <mat-select placeholder="Training Context" formControlName="TrainingContext">
         <mat-option *ngFor="let training of GetAllPatterns" [value]="training">
           {{training}}
         </mat-option>
       </mat-select>
       <mat-error
         *ngIf="fileMapperMainFormGroup.get('TrainingContext').touched && fileMapperMainFormGroup.get('TrainingContext').hasError('required')">
-        TrainingContext required</mat-error>
+        Training Context required</mat-error>
     </mat-form-field>
 
 
@@ -140,14 +140,14 @@
       </mat-chip-list>
     </mat-form-field> -->
     <mat-form-field class="pl-8" fxFlex="50">
-      <mat-label>AttachmentType</mat-label>
+      <mat-label>Attachment Type</mat-label>
       <mat-select formControlName="AttachmentType" multiple>
         <mat-option *ngFor="let attachmentType of AttachmentTypeList" [value]="attachmentType">{{attachmentType}}
         </mat-option>
       </mat-select>
       <mat-error
         *ngIf="fileMapperMainFormGroup.get('AttachmentType').touched &&  fileMapperMainFormGroup.get('AttachmentType').hasError('required')">
-        AttachmentType required</mat-error>
+        Attachment Type required</mat-error>
     </mat-form-field>
 
 

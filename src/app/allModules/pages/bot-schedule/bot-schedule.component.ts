@@ -10,6 +10,7 @@ import { fuseAnimations } from '@fuse/animations';
 import { Guid } from 'guid-typescript';
 import { NotificationDialogComponent } from 'app/notifications/notification-dialog/notification-dialog.component';
 import { AuthenticationDetails } from 'app/models/master';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-bot-schedule',
@@ -48,7 +49,8 @@ export class BotScheduleComponent implements OnInit {
   constructor(private _fileMapperService: FileMapperService, private _router: Router,
     private _formBuilder: FormBuilder,
     private dialog: MatDialog,
-    public snackBar: MatSnackBar) {
+    public snackBar: MatSnackBar,
+    private _datePipe: DatePipe) {
     this.currentSelectedFileMapper = new FileMapper();
     this.searchText = '';
     this.fileMapperMainFormGroup = this._formBuilder.group({
@@ -72,9 +74,9 @@ export class BotScheduleComponent implements OnInit {
       DayCheck: [''],
       TimeCheck: [''],
       Interval: ['', [Validators.pattern]],
-      hour: [''],
-      minutes: [''],
-      AMPM: ['']
+      // hour: [''],
+      // minutes: [''],
+      // AMPM: ['']
     });
     this.notificationSnackBarComponent = new NotificationSnackBarComponent(this.snackBar);
 
@@ -82,7 +84,7 @@ export class BotScheduleComponent implements OnInit {
 
   }
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.GetAllFileMappers();
     // for (let i = 0; i < 12; i++) {
     //   this.HoursList.push(this.HoursList[i]);
@@ -138,10 +140,10 @@ export class BotScheduleComponent implements OnInit {
     );
   }
   fileMapperClick(selectedMapper: FileMapper): void {
-   // console.log(botSchedule);
+    // console.log(botSchedule);
     this.SelectedMapperID = selectedMapper.MapperID;
-    this.currentSelectedFileMapper = selectedMapper; 
-    //console.log(this.currentSelectedFileMapper);
+    this.currentSelectedFileMapper = selectedMapper;
+    // console.log(this.currentSelectedFileMapper);
     this.fileMapperMainFormGroup.get('MapperID').patchValue(selectedMapper.MapperID);
     this.fileMapperMainFormGroup.get('Mode').patchValue(selectedMapper.Mode);
     this.fileMapperMainFormGroup.get('Connectivity').patchValue(selectedMapper.ConnectionServer);
@@ -161,20 +163,24 @@ export class BotScheduleComponent implements OnInit {
         this.fileMapperScheduleFormGroup.get('DateCheck').patchValue(element.DateCheck);
         this.fileMapperScheduleFormGroup.get('DayCheck').patchValue(element.DayCheck);
         this.fileMapperScheduleFormGroup.get('Interval').patchValue(element.Interval);
-        // this.fileMapperScheduleFormGroup.get('TimeCheck').patchValue(botSchedule.TimeCheck);
-        if(element.TimeCheck !== null){
-          let datetime = element.TimeCheck.split("T");
-          let time = datetime[1];
-          // console.log(datetime);
-          // console.log(time);
-          let hourminut = time.split(":");
-          let hour = hourminut[0];
-          let minut = hourminut[1];
-          this.fileMapperScheduleFormGroup.get('hour').patchValue(hour);
-          this.fileMapperScheduleFormGroup.get('minutes').patchValue(minut);
+        if (element.TimeCheck) {
+          const TC = this._datePipe.transform(element.TimeCheck, 'hh:mm a');
+          this.fileMapperScheduleFormGroup.get('TimeCheck').patchValue(TC);
         }
+
+        // if (element.TimeCheck !== null) {
+        //   const datetime = element.TimeCheck.split('T');
+        //   const time = datetime[1];
+        //   // console.log(datetime);
+        //   // console.log(time);
+        //   const hourminut = time.split(':');
+        //   const hour = hourminut[0];
+        //   const minut = hourminut[1];
+        //   this.fileMapperScheduleFormGroup.get('hour').patchValue(hour);
+        //   this.fileMapperScheduleFormGroup.get('minutes').patchValue(minut);
+        // }
       }
-      if (element.MapperID === null){
+      else if (!element.MapperID) {
         this.ResetControl();
       }
     });
@@ -212,42 +218,43 @@ export class BotScheduleComponent implements OnInit {
         dialogRef.afterClosed().subscribe(
           result => {
             if (result) {
-              let mapperId = this.currentSelectedFileMapper.MapperID;
+              const mapperId = this.currentSelectedFileMapper.MapperID;
               console.log(mapperId);
               this._fileMapperService.TestRun(this.currentSelectedFileMapper).subscribe(
                 (data) => {
                   this.botSchedule = new BotScheduler();
-                  let hour;
-                  let minute;
-                  let ampm;
-                  hour = this.fileMapperScheduleFormGroup.get('hour').value;
-                  minute = this.fileMapperScheduleFormGroup.get('minutes').value;
-                  ampm = this.fileMapperScheduleFormGroup.get('AMPM').value;
+                  // let hour;
+                  // let minute;
+                  // let ampm;
+                  // hour = this.fileMapperScheduleFormGroup.get('hour').value;
+                  // minute = this.fileMapperScheduleFormGroup.get('minutes').value;
+                  // ampm = this.fileMapperScheduleFormGroup.get('AMPM').value;
                   this.botSchedule.MapperID = mapperId;
-
                   this.botSchedule.PostCheckType = this.fileMapperScheduleFormGroup.get('PostCheckType').value;
                   this.botSchedule.DateCheck = this.fileMapperScheduleFormGroup.get('DateCheck').value;
                   this.botSchedule.DayCheck = this.fileMapperScheduleFormGroup.get('DayCheck').value;
-                  this.botSchedule.TimeCheck = hour + ':' + minute + ampm;
+                  this.botSchedule.TimeCheck = this.fileMapperScheduleFormGroup.get('TimeCheck').value;
                   this.botSchedule.Interval = this.fileMapperScheduleFormGroup.get('Interval').value;
                   // this.botSchedule.CreatedBy = this.authenticationDetails.userID.toString();
-                  console.log(this.botSchedule);
+                  // console.log(this.botSchedule);
                   this._fileMapperService.ScheduleMapping(this.botSchedule).subscribe(
                     (data) => {
                       // this.notificationSnackBarComponent.openSnackBar('Bot Schedule successfully done', SnackBarStatus.success);
                       // this.SaveSucceed.emit('success');
                       // this._fileMapperService.TriggerNotification('Bot Schedule successfully done');
-                      this.notificationSnackBarComponent.openSnackBar('TestRun and BotSchedule successfully done', SnackBarStatus.success);
+                      this.ResetControl();
+                      this.GetAllFileMappers();
+                      this.notificationSnackBarComponent.openSnackBar('Test Run and Bot Schedule successfully done', SnackBarStatus.success);
                     },
                     (err) => {
                       console.error(err);
+                      // this.ResetControl();
                       this.notificationSnackBarComponent.openSnackBar(err instanceof Object ? 'Something went wrong' : err, SnackBarStatus.danger);
                       // this.ShowProgressBarEvent.emit('hide');
                     }
                   );
 
                   // console.log(data);
-                  this.ResetControl();
                   // this.notificationSnackBarComponent.openSnackBar('TestRun and BotSchedule successfully done', SnackBarStatus.success);
                   // this.SaveSucceed.emit('success');
                   // this._fileMapperService.TriggerNotification('TestRun and BotSchedule successfully done');

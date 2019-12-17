@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-// import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { RouterModule } from '@angular/router';
 
 import {
@@ -120,7 +120,7 @@ const routes = [
         MatTreeModule,
  
         NgxChartsModule,
-        // NgxMaterialTimepickerModule,
+        NgxMaterialTimepickerModule,
 
         FuseSharedModule,
 
