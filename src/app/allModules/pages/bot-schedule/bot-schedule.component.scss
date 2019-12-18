@@ -16,37 +16,36 @@
       position: relative;
       border-radius: 10px;
 
-    //   .mat-sidenav-container {
-    //     display: flex;
-    //     flex: 1;
-    //     width: 100%;
+      //   .mat-sidenav-container {
+      //     display: flex;
+      //     flex: 1;
+      //     width: 100%;
 
-    //     > .mat-sidenav-content,
-    //     > .mat-drawer-content {
-    //       display: flex;
-    //       flex: 1 1 auto;
-    //       min-height: 100%;
-    //       height: auto;
-    //     }
+      //     > .mat-sidenav-content,
+      //     > .mat-drawer-content {
+      //       display: flex;
+      //       flex: 1 1 auto;
+      //       min-height: 100%;
+      //       height: auto;
+      //     }
 
-    //     > .mat-drawer-content {
-    //       max-width: 100%;
-    //     }
+      //     > .mat-drawer-content {
+      //       max-width: 100%;
+      //     }
 
-    //     mat-sidenav {
-    //       display: flex;
-    //       flex-direction: column;
-    //       width: 400px;
-    //       max-width: 90%;
-    //       box-shadow: 0 0 1px rgba(0, 0, 0, 0.37);
-    //       overflow: hidden;
-    //     }
-    //   }
+      //     mat-sidenav {
+      //       display: flex;
+      //       flex-direction: column;
+      //       width: 400px;
+      //       max-width: 90%;
+      //       box-shadow: 0 0 1px rgba(0, 0, 0, 0.37);
+      //       overflow: hidden;
+      //     }
+      //   }
     }
   }
-}
 
-.borderRight1 {
+  .borderRight1 {
     border-left: 1px solid black;
     border-radius: 1px;
     opacity: 0.1;
@@ -96,7 +95,7 @@
       -webkit-overflow-scrolling: touch;
     }
   }
-  .side-bar-items{
+  .side-bar-items {
     text-decoration: none !important;
     display: flex;
     align-items: center;
@@ -107,15 +106,15 @@
     cursor: pointer;
     border-radius: 0 25px 25px 0;
     margin-right: 7px;
-}
+  }
   .roundCommon {
     height: 20px;
     width: 20px;
     border-radius: 20px;
   }
   .round {
-     @extend .roundCommon;
-    background-color: white; 
+    @extend .roundCommon;
+    background-color: white;
     // rgb(187, 185, 185)
     border: 2px solid gray;
     cursor: pointer !important;
@@ -134,12 +133,13 @@
     padding: 16px;
     font-size: 15px;
     font-weight: 400;
-}
-.borderRightClass {
-  border-right: 1px solid #dce1e9;
-}
-.round1 {
-  @extend .roundCommon;
-  background-color: #2ecc71;
-  border: 2px solid #2ecc71;
+  }
+  .borderRightClass {
+    border-right: 1px solid #dce1e9;
+  }
+  .round1 {
+    @extend .roundCommon;
+    background-color: #2ecc71;
+    border: 2px solid #2ecc71;
+  }
 }
