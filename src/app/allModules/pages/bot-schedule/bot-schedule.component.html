@@ -2,7 +2,7 @@
   <div class="top-bg accent"></div>
   <div class="center">
     <div fxLayout class="content-card">
-      <div fxFlex="30" class="side-bar" fusePerfectScrollbar>
+      <div fxFlex="30" class="side-bar">
         <div class="sidenav-header">
           <mat-toolbar>
             <mat-toolbar-row fxLayout="row" fxLayoutAlign="space-between center">
@@ -16,12 +16,12 @@
           </mat-toolbar>
         </div>
         <mat-divider></mat-divider>
-        <div class="sidenav-content" fusePerfectScrollbar fxFlex style="margin-top: 10px;margin-left: -4px">
-          
+        <div class="sidenav-content py-16" fusePerfectScrollbar fxFlex>
+
           <div *ngFor="let mapers of AllFileMappers | filter: searchText">
             <div [attr.aria-label]="mapers.Email">
               <div fxLayout="row" fxLayoutAlign="start center" class="side-bar-items" matRipple
-              (click)="fileMapperClick(mapers)" [ngClass]="{'active accent':mapers.MapperID===SelectedMapperID}">
+                (click)="fileMapperClick(mapers)" [ngClass]="{'active accent':mapers.MapperID===SelectedMapperID}">
                 <div fxFlex fxLayoutAlign="start center">
                   {{mapers.Email}}
                 </div>
@@ -40,122 +40,123 @@
 
       </div>
       <div class="borderRight1"></div>
-      <div fxFlex="50" style="height: 73vh;" class="m-4 side-bar" fusePerfectScrollbar>
-        <form class="mat-card mat-elevation-z4 p-24" autocomplete="off" fxLayout="column" fxLayoutAlign="start"
-          fxFlex="1 0 auto" name="form" [formGroup]="fileMapperMainFormGroup" novalidate>
-          <div class="h2 mb-24">File Mapper</div>
-          <div fxLayout="row" fxLayoutAlign="start">
-            <mat-form-field class="pl-8" fxFlex="50">
-              <mat-select placeholder="Mode" formControlName="Mode" disabled>
-                <mat-option *ngFor="let mode of AllModes" [value]="mode">{{mode}}</mat-option>
-              </mat-select>
-            </mat-form-field>
-            <mat-form-field class="pl-8" fxFlex="50">
-              <!-- <mat-select placeholder="TrainingContext" formControlName="TrainingContext" readonly>
+      <div fxFlex="50" class="side-bar">
+        <div class="sidenav-content py-16" fusePerfectScrollbar fxFlex fxLayout="column">
+          <form class="mat-card p-12" autocomplete="off" fxLayout="column" fxLayoutAlign="start"
+            fxFlex="1 0 auto" name="form" [formGroup]="fileMapperMainFormGroup" novalidate>
+            <div class="h2 mb-24">File Mapper</div>
+            <div fxLayout="row" fxLayoutAlign="start">
+              <mat-form-field class="pl-8" fxFlex="50">
+                <mat-select placeholder="Mode" formControlName="Mode" disabled>
+                  <mat-option *ngFor="let mode of AllModes" [value]="mode">{{mode}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="pl-8" fxFlex="50">
+                <!-- <mat-select placeholder="TrainingContext" formControlName="TrainingContext" readonly>
                   <mat-option *ngFor="let training of GetAllPatterns" [value]="training">
                     {{training}}
                   </mat-option>
                 </mat-select> [readonly]="fileMapperMainFormGroup.MapperID" [disabled]="fileMapperMainFormGroup.MapperID -->
-              <input matInput placeholder="Training Context" formControlName="TrainingContext" readonly>
-            </mat-form-field>
-          </div>
+                <input matInput placeholder="Training Context" formControlName="TrainingContext" readonly>
+              </mat-form-field>
+            </div>
 
-          <div fxLayout="row" fxLayoutAlign="start">
-            <mat-form-field class="pl-8" fxFlex="50">
-              <mat-select placeholder="Connectivity" formControlName="Connectivity" disabled>
-                <mat-option *ngFor="let connectivity of AllConnectivities" (click)="onConnectivityClick(connectivity)"
-                  [value]="connectivity">{{connectivity}}</mat-option>
-              </mat-select>
-            </mat-form-field>
+            <div fxLayout="row" fxLayoutAlign="start">
+              <mat-form-field class="pl-8" fxFlex="50">
+                <mat-select placeholder="Connectivity" formControlName="Connectivity" disabled>
+                  <mat-option *ngFor="let connectivity of AllConnectivities" (click)="onConnectivityClick(connectivity)"
+                    [value]="connectivity">{{connectivity}}</mat-option>
+                </mat-select>
+              </mat-form-field>
 
-            <mat-form-field class="pl-8" fxFlex="50">
-              <input matInput placeholder="Subject" formControlName="Subject" readonly>
-            </mat-form-field>
-          </div>
+              <mat-form-field class="pl-8" fxFlex="50">
+                <input matInput placeholder="Subject" formControlName="Subject" readonly>
+              </mat-form-field>
+            </div>
 
-          <div fxLayout="row" fxLayoutAlign="start">
-            <mat-form-field class="pl-8" fxFlex="50">
-              <input matInput placeholder="Host" formControlName="Host" readonly>
-            </mat-form-field>
+            <div fxLayout="row" fxLayoutAlign="start">
+              <mat-form-field class="pl-8" fxFlex="50">
+                <input matInput placeholder="Host" formControlName="Host" readonly>
+              </mat-form-field>
 
-            <mat-form-field class="pl-8" fxFlex="50">
-              <input matInput placeholder="Port" formControlName="Port" readonly>
-            </mat-form-field>
-          </div>
+              <mat-form-field class="pl-8" fxFlex="50">
+                <input matInput placeholder="Port" formControlName="Port" readonly>
+              </mat-form-field>
+            </div>
 
-          <div fxLayout="row" fxLayoutAlign="start">
-            <mat-form-field class="pl-8" fxFlex="50">
-              <input matInput placeholder="Email" formControlName="Email" readonly>
-            </mat-form-field>
+            <div fxLayout="row" fxLayoutAlign="start">
+              <mat-form-field class="pl-8" fxFlex="50">
+                <input matInput placeholder="Email" formControlName="Email" readonly>
+              </mat-form-field>
 
-            <mat-form-field class="pl-8" fxFlex="50">
-              <input matInput placeholder="Password" type="password" formControlName="Password" readonly>
-            </mat-form-field>
-          </div>
+              <mat-form-field class="pl-8" fxFlex="50">
+                <input matInput placeholder="Password" type="password" formControlName="Password" readonly>
+              </mat-form-field>
+            </div>
 
-          <div fxLayout="row" fxLayoutAlign="start">
-            <mat-form-field class="pl-8" fxFlex="50">
-              <input matInput placeholder="From" formControlName="From" readonly>
-            </mat-form-field>
-            <mat-form-field class="pl-8" fxFlex="50">
-              <input matInput placeholder="Attachment Type" formControlName="AttachmentType" readonly>
-              <!-- <mat-label>AttachmentType</mat-label>
+            <div fxLayout="row" fxLayoutAlign="start">
+              <mat-form-field class="pl-8" fxFlex="50">
+                <input matInput placeholder="From" formControlName="From" readonly>
+              </mat-form-field>
+              <mat-form-field class="pl-8" fxFlex="50">
+                <input matInput placeholder="Attachment Type" formControlName="AttachmentType" readonly>
+                <!-- <mat-label>AttachmentType</mat-label>
                 <mat-select formControlName="AttachmentType" multiple readonly>
                   <mat-option *ngFor="let AttachmentType of AttachmentTypeList" [value]="AttachmentType">
                     {{AttachmentType}}
                   </mat-option>
                 </mat-select> -->
-            </mat-form-field>
-          </div>
-        </form>
-        <form class="mat-card p-24" autocomplete="off" fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto"
-          name="form1" [formGroup]="fileMapperScheduleFormGroup" novalidate>
-          <div fxLayout="row" fxLayoutAlign="start">
-            <mat-form-field class="pl-8" fxFlex="30">
-              <mat-select placeholder="Post Check Type" [(value)]="SelectPostCheckType"
-                (selectionChange)="GetPostCheckType($event.value)" formControlName="PostCheckType" required>
-                <mat-option value="Monthly">Monthly</mat-option>
-                <mat-option value="Weekly">Weekly</mat-option>
-                <mat-option value="EveryDay">EveryDay</mat-option>
-                <mat-option value="OneTime">OneTime</mat-option>
-                <mat-option value="Repeat">Repeat</mat-option>
-              </mat-select>
-              <mat-error
-                *ngIf="fileMapperScheduleFormGroup.get('PostCheckType').touched && fileMapperScheduleFormGroup.get('PostCheckType').hasError('required')">
-                Post Check Type is required
-              </mat-error>
-            </mat-form-field>
-            <mat-form-field color="accent" class="pl-8" fxFlex="25"
-              *ngIf="SelectPostCheckType == 'Monthly' || SelectPostCheckType == 'OneTime'">
-              <input matInput placeholder="Date Check" [matDatepicker]="picker2" formControlName="DateCheck">
-              <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-              <mat-datepicker #picker2 color="primary"></mat-datepicker>
-            </mat-form-field>
-            <mat-form-field class="pl-8" fxFlex="25" *ngIf="SelectPostCheckType == 'Weekly'">
-              <mat-select placeholder="Day Check" [(value)]="DayCheck" formControlName="DayCheck">
-                <mat-option value="Monday">Mon</mat-option>
-                <mat-option value="Tuesday">Tue</mat-option>
-                <mat-option value="Wednesday">Wed</mat-option>
-                <mat-option value="Thursday">Thu</mat-option>
-                <mat-option value="Friday">Fri</mat-option>
-                <mat-option value="Saturdar">Sat</mat-option>
-                <mat-option value="Sunday">Sun</mat-option>
-              </mat-select>
-            </mat-form-field>
-            <mat-form-field class="pl-8" fxFlex="25" *ngIf="SelectPostCheckType == 'Repeat'">
-              <input matInput pattern="^(0|[1-9][0-9]*)$" placeholder="Repeat Number" formControlName="Interval">
-              <mat-error
-                *ngIf="fileMapperScheduleFormGroup.get('Interval').touched && fileMapperScheduleFormGroup.get('Interval').hasError('pattern')">
-                Please enter a valid Interval
-              </mat-error>
-            </mat-form-field>
+              </mat-form-field>
+            </div>
+          </form>
+          <form class="mat-card p-24" autocomplete="off" fxLayout="column" fxLayoutAlign="start" fxFlex="1 0 auto"
+            name="form1" [formGroup]="fileMapperScheduleFormGroup" novalidate>
+            <div fxLayout="row" fxLayoutAlign="start">
+              <mat-form-field class="pl-8" fxFlex="30">
+                <mat-select placeholder="Post Check Type" [(value)]="SelectPostCheckType"
+                  (selectionChange)="GetPostCheckType($event.value)" formControlName="PostCheckType" required>
+                  <mat-option value="Monthly">Monthly</mat-option>
+                  <mat-option value="Weekly">Weekly</mat-option>
+                  <mat-option value="EveryDay">EveryDay</mat-option>
+                  <mat-option value="OneTime">OneTime</mat-option>
+                  <mat-option value="Repeat">Repeat</mat-option>
+                </mat-select>
+                <mat-error
+                  *ngIf="fileMapperScheduleFormGroup.get('PostCheckType').touched && fileMapperScheduleFormGroup.get('PostCheckType').hasError('required')">
+                  Post Check Type is required
+                </mat-error>
+              </mat-form-field>
+              <mat-form-field color="accent" class="pl-8" fxFlex="25"
+                *ngIf="SelectPostCheckType == 'Monthly' || SelectPostCheckType == 'OneTime'">
+                <input matInput placeholder="Date Check" [matDatepicker]="picker2" formControlName="DateCheck">
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2 color="primary"></mat-datepicker>
+              </mat-form-field>
+              <mat-form-field class="pl-8" fxFlex="25" *ngIf="SelectPostCheckType == 'Weekly'">
+                <mat-select placeholder="Day Check" [(value)]="DayCheck" formControlName="DayCheck">
+                  <mat-option value="Monday">Mon</mat-option>
+                  <mat-option value="Tuesday">Tue</mat-option>
+                  <mat-option value="Wednesday">Wed</mat-option>
+                  <mat-option value="Thursday">Thu</mat-option>
+                  <mat-option value="Friday">Fri</mat-option>
+                  <mat-option value="Saturdar">Sat</mat-option>
+                  <mat-option value="Sunday">Sun</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field class="pl-8" fxFlex="25" *ngIf="SelectPostCheckType == 'Repeat'">
+                <input matInput pattern="^(0|[1-9][0-9]*)$" placeholder="Repeat Number" formControlName="Interval">
+                <mat-error
+                  *ngIf="fileMapperScheduleFormGroup.get('Interval').touched && fileMapperScheduleFormGroup.get('Interval').hasError('pattern')">
+                  Please enter a valid Interval
+                </mat-error>
+              </mat-form-field>
 
-            <!-- <mat-form-field> -->
-            <!-- <input matInput name="TimeCheck" placeholder="Time" [format]="24">
+              <!-- <mat-form-field> -->
+              <!-- <input matInput name="TimeCheck" placeholder="Time" [format]="24">
                 <ngx-material-timepicker #TimeCheck></ngx-material-timepicker> -->
-            <div fxFlex="25"
-              *ngIf="SelectPostCheckType == 'EveryDay' || SelectPostCheckType == 'Monthly' || SelectPostCheckType == 'Weekly'">
-              <!-- <mat-form-field class="pl-8" fxFlex="50">
+              <div fxFlex="25"
+                *ngIf="SelectPostCheckType == 'EveryDay' || SelectPostCheckType == 'Monthly' || SelectPostCheckType == 'Weekly'">
+                <!-- <mat-form-field class="pl-8" fxFlex="50">
                   <mat-select placeholder="Hou" formControlName="hour">
                     <mat-option *ngFor="let hour of HoursList" [value]="hour.id">{{hour.id}}</mat-option>
                   </mat-select>
@@ -165,37 +166,38 @@
                     <mat-option *ngFor="let min of minutesList" [value]="min.id">{{min.id}}</mat-option>
                   </mat-select>
                 </mat-form-field> -->
-              <mat-form-field class="pl-8" style="width: 85px;">
-                <input matInput [ngxTimepicker]="picker" formControlName="TimeCheck">
-                <ngx-material-timepicker #picker></ngx-material-timepicker>
-              </mat-form-field>
-              <!-- <mat-form-field class="pl-8" fxFlex="41">
+                <mat-form-field class="pl-8" style="width: 85px;">
+                  <input matInput [ngxTimepicker]="picker" formControlName="TimeCheck">
+                  <ngx-material-timepicker #picker></ngx-material-timepicker>
+                </mat-form-field>
+                <!-- <mat-form-field class="pl-8" fxFlex="41">
                   <mat-select placeholder="AM" [(value)]="AMPM" formControlName="AMPM">
                     <mat-option value="AM">AM</mat-option>
                     <mat-option value="PM">PM</mat-option>
                   </mat-select>
                 </mat-form-field> -->
-            </div>
-            <!-- </mat-form-field> -->
-            <!-- <input [ngxTimepicker]="picker" fxFlex="25">
+              </div>
+              <!-- </mat-form-field> -->
+              <!-- <input [ngxTimepicker]="picker" fxFlex="25">
               <ngx-material-timepicker #picker></ngx-material-timepicker> -->
-            <!-- <mat-form-field color="accent" class="pl-8" fxFlex="25">
+              <!-- <mat-form-field color="accent" class="pl-8" fxFlex="25">
                 <input matInput placeholder="Time Check" [matTimepicker]="timePicker2" formControlName="TimeCheck">
                 <mat-timepicker-toggle matSuffix [for]="timePicker2"></mat-timepicker-toggle>
                 <mat-timepicker #timePicker2 color="primary"></mat-timepicker>
               </mat-form-field> -->
-          </div>
-          <div fxLayout="row" fxLayoutAlign="end">
-            <button mat-raised-button color="accent" type="button" (click)="TestRunSchedule()"
-              style="margin-left: 10px;">
-              Test Run & Schedule
-            </button>
-          </div>
+            </div>
+            <div fxLayout="row" fxLayoutAlign="end">
+              <button mat-raised-button color="accent" type="button" (click)="TestRunSchedule()"
+                style="margin-left: 10px;">
+                Test Run & Schedule
+              </button>
+            </div>
 
-        </form>
+          </form>
+        </div>
       </div>
       <div class="borderRight1"></div>
-      <div fxFlex="20" style="height: 73vh;" class="m-4 side-bar">
+      <div fxFlex="20" class="m-4 side-bar">
         <div class="sidenav-content" fusePerfectScrollbar fxFlex style="margin-top: 50px;">
           <!-- <div fxLayout fxLayoutAlign="center" class="m-4"
               *ngFor="let status of StatusList;let i=index;let last = last">
